@@ -2,13 +2,11 @@ import {
   createSlice,
   nanoid,
   PayloadAction as Act,
-  PrepareAction,
 } from "@reduxjs/toolkit";
 import dayjs, { Dayjs, ManipulateType } from "dayjs";
 import duration from "dayjs/plugin/duration";
 
 type DayAddAct = Act<{ value: number; unit: ManipulateType }>;
-type timerSlIS = typeof initialState;
 
 dayjs.extend(duration);
 
@@ -22,7 +20,7 @@ const initialState = {
   isCounting: false,
 };
 
-export default createSlice({
+const slice = createSlice({
   name: "timer",
   initialState,
   reducers: {
@@ -55,3 +53,5 @@ export default createSlice({
     },
   },
 });
+
+export default slice.reducer;

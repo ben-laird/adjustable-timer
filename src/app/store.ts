@@ -1,8 +1,9 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import timerSlice from "../features/timer/timerSlice";
 
 export const store = configureStore({
   reducer: {
-    memes: () => "Big memes",
+    timerSlice
   },
 });
 
