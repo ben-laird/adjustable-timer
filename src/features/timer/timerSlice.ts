@@ -26,7 +26,10 @@ export default createSlice({
       state.targetTime = state.targetTime.add(value, unit);
     },
     setCounting: (state, action: Act<boolean>) => {
-      state.counting = action.payload
-    }
+      state.isCounting = action.payload;
+    },
+    flipCounting: (state) => {
+      state.isCounting = !state.isCounting;
+    },
   },
 });
