@@ -1,4 +1,9 @@
-import { createSlice, PayloadAction as Act } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  nanoid,
+  PayloadAction as Act,
+  PrepareAction,
+} from "@reduxjs/toolkit";
 import dayjs, { Dayjs, ManipulateType } from "dayjs";
 import duration from "dayjs/plugin/duration";
 
@@ -29,8 +34,13 @@ export default createSlice({
       if (!isCounting) state.targetTime = targetTime.add(value, unit);
       state.tMinus = getDuration(currentTime, targetTime);
     },
-    setTarget: (state, action: Act<Dayjs>) => {
-      const isValid = true;
+    setTarget: {
+      reducer: (state, action: Act<Dayjs>) => {
+        state.targetTime = action.payload;
+      },
+      prepare: (_state, action: Act<Dayjs>) => {
+        return { meta: { id: nanoid() }, payload: action.payload };
+      },
     },
     adjustTarget: (state, action: DayAddAct) => {
       const { value, unit } = action.payload;
