@@ -7,19 +7,21 @@ const initialState = {
   currentTime: dayjs(),
   targetTime: dayjs().add(5, "minute"),
   tMinus: 5,
-  counting: true,
+  isCounting: false,
 };
 
 export default createSlice({
   name: "timer",
   initialState,
   reducers: {
-    advance: (state, _action) => {
+    advanceTime: (state, action: AddAction) => {
+      const { value, unit } = action.payload;
       state.currentTime = dayjs();
-      if (!state.counting) state.targetTime = state.targetTime.add(1, "second");
+      if (!state.isCounting)
+        state.targetTime = state.targetTime.add(value, unit);
       state.tMinus = state.currentTime.diff(state.targetTime, "seconds");
     },
-    adjust: (state, action: AddAction) => {
+    adjustTarget: (state, action: AddAction) => {
       const { value, unit } = action.payload;
       state.targetTime = state.targetTime.add(value, unit);
     },
