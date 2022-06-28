@@ -1,29 +1,40 @@
 import { Dayjs } from "dayjs";
 import { Duration } from "dayjs/plugin/duration";
+import { Component, useState } from "react";
 import { connect } from "react-redux";
 import { RootState } from "../../app/store";
 import { advanceTimeBy } from "./timerSlice";
 
 type TimerProps = ReturnType<typeof mapState> & typeof mapDispatch;
 
-const Timer = (props: TimerProps) => {
-  const dateCode = "DD MMM, YYYY - h:mm:ss";
-  const duraCode = "HH:mm:ss";
+class Timer extends Component<TimerProps> {
+  dateCode = "DD MMM, YYYY - h:mm:ss";
+  duraCode = "HH:mm:ss";
 
-  const { tMinus, targetTime } = props;
+  drStrangeMode = true;
 
-  const advanceTime = () => props.advanceTimeBy({ value: 1, unit: "second" });
-  const shapeT = (timeOrDur: Dayjs | Duration, formatter: string) =>
+  advanceTime = () => this.props.advanceTimeBy({ value: 1, unit: "second" });
+  shapeT = (timeOrDur: Dayjs | Duration, formatter: string) =>
     timeOrDur.format(formatter);
 
-  return (
+  timeStoneClock = (clockInterval: number) => {
+    setTimeout(() => {
+      this.advanceTime();
+      if (!this.drStrangeMode) this.timeStoneClock(clockInterval);
+    }, clockInterval);
+  };
+
+  render = () => (
     <div>
-      <h3>{shapeT(tMinus, duraCode)}</h3>
-      <p>Counting to {targetTime.format(dateCode)}</p>
-      <button onClick={advanceTime}>Advance time</button>
+      <h3>{this.shapeT(this.props.tMinus, this.duraCode)}</h3>
+      <p>Counting to {this.shapeT(this.props.targetTime, this.dateCode)}</p>
+      <button onClick={this.advanceTime}>Advance time</button>
+      <button onClick={() => console.log("memes")}>
+        Toggle Dr. Strange Mode {`${this.drStrangeMode ? "Off" : "On"}`}
+      </button>
     </div>
   );
-};
+}
 
 const mapState = (state: RootState) => {
   const { tMinus, targetTime } = state.timerSlice;
