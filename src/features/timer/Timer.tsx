@@ -1,6 +1,6 @@
 import { Dayjs } from "dayjs";
 import { Duration } from "dayjs/plugin/duration";
-import { Component, useState } from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import { RootState } from "../../app/store";
 import { advanceTimeBy } from "./timerSlice";
