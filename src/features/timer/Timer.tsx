@@ -13,8 +13,8 @@ const Timer = (props: TimerProps) => {
   const { tMinus, targetTime } = props;
 
   const advanceTime = () => props.advanceTimeBy({ value: 1, unit: "second" });
-  const shapeT = (timeOrDur: Dayjs | Duration, fomratString: string) =>
-    timeOrDur.format(fomratString);
+  const shapeT = (timeOrDur: Dayjs | Duration, formatter: string) =>
+    timeOrDur.format(formatter);
 
   return (
     <div>
