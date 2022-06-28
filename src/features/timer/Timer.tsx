@@ -30,7 +30,7 @@ class Timer extends Component<TimerProps> {
       <p>Counting to {this.shapeT(this.props.targetTime, this.dateCode)}</p>
       <button onClick={this.advanceTime}>Advance time</button>
       <button onClick={() => console.log("memes")}>
-        Toggle Dr. Strange Mode {`${this.drStrangeMode ? "Off" : "On"}`}
+        Turn {`${this.drStrangeMode ? "off" : "on"}`} Dr. Strange Mode
       </button>
     </div>
   );
