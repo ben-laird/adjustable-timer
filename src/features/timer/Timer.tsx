@@ -1,32 +1,35 @@
+import { Dayjs } from "dayjs";
+import { Duration } from "dayjs/plugin/duration";
 import { connect } from "react-redux";
 import { RootState } from "../../app/store";
-import { advanceTimeBy, flipCounting } from "./timerSlice";
+import { advanceTimeBy } from "./timerSlice";
 
 type TimerProps = ReturnType<typeof mapState> & typeof mapDispatch;
 
 const Timer = (props: TimerProps) => {
-  const advanceUp = () => props.advanceTimeBy({ value: 1, unit: "second" });
+  const dateCode = "DD MMM, YYYY - h:mm:ss";
+  const duraCode = "HH:mm:ss";
 
-  const dateString = "DD MMM, YYYY - h:mm:ss";
+  const { tMinus, targetTime } = props;
+
+  const advanceTime = () => props.advanceTimeBy({ value: 1, unit: "second" });
+  const shapeT = (timeOrDur: Dayjs | Duration, fomratString: string) =>
+    timeOrDur.format(fomratString);
 
   return (
     <div>
-      <h3>{props.tMinus.format("HH:mm:ss")}</h3>
-      <p>
-        Counting from {props.currentTime.format(dateString)} to{" "}
-        {props.targetTime.format(dateString)}
-      </p>
-      <button onClick={advanceUp}>Advance time</button>
-      <button onClick={() => props.flipCounting()}>Start/stop counting</button>
+      <h3>{shapeT(tMinus, duraCode)}</h3>
+      <p>Counting to {targetTime.format(dateCode)}</p>
+      <button onClick={advanceTime}>Advance time</button>
     </div>
   );
 };
 
 const mapState = (state: RootState) => {
-  const { tMinus, targetTime, currentTime } = state.timerSlice;
-  return { tMinus, targetTime, currentTime };
+  const { tMinus, targetTime } = state.timerSlice;
+  return { tMinus, targetTime };
 };
 
-const mapDispatch = { advanceTimeBy, flipCounting };
+const mapDispatch = { advanceTimeBy };
 
 export default connect(mapState, mapDispatch)(Timer);
