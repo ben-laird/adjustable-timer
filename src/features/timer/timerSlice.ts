@@ -1,8 +1,4 @@
-import {
-  createSlice,
-  nanoid,
-  PayloadAction as Act,
-} from "@reduxjs/toolkit";
+import { createSlice, nanoid, PayloadAction as Act } from "@reduxjs/toolkit";
 import dayjs, { Dayjs, ManipulateType } from "dayjs";
 import duration from "dayjs/plugin/duration";
 
@@ -10,8 +6,8 @@ type DayAddAct = Act<{ value: number; unit: ManipulateType }>;
 
 dayjs.extend(duration);
 
-const getDuration = (time1: Dayjs, time2: Dayjs) =>
-  dayjs.duration(time1.diff(time2));
+const getDuration = (initialTime: Dayjs, finalTime: Dayjs) =>
+  dayjs.duration(finalTime.diff(initialTime));
 
 const initialState = {
   currentTime: dayjs(),
@@ -24,13 +20,13 @@ const slice = createSlice({
   name: "timer",
   initialState,
   reducers: {
-    advanceTime: (state, action: DayAddAct) => {
+    advanceTimeBy: (state, action: DayAddAct) => {
       const { value, unit } = action.payload;
       const { currentTime, targetTime, isCounting } = state;
 
-      state.currentTime = dayjs();
+      state.currentTime = currentTime.add(value, unit);
       if (!isCounting) state.targetTime = targetTime.add(value, unit);
-      state.tMinus = getDuration(currentTime, targetTime);
+      state.tMinus = getDuration(state.currentTime, state.targetTime);
     },
     setTarget: {
       reducer: (state, action: Act<Dayjs>) => {
@@ -55,3 +51,10 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
+export const {
+  advanceTimeBy,
+  setTarget,
+  adjustTarget,
+  setCounting,
+  flipCounting,
+} = slice.actions;
