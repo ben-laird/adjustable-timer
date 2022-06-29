@@ -2,10 +2,7 @@ import { createSlice, nanoid, PayloadAction as Act } from "@reduxjs/toolkit";
 import dayjs, { Dayjs, ManipulateType } from "dayjs";
 import duration from "dayjs/plugin/duration";
 
-export interface DayDelta {
-  value: number;
-  unit: ManipulateType;
-}
+export type DayDelta = { value: number; unit: ManipulateType };
 type DayAddAct = Act<DayDelta>;
 
 dayjs.extend(duration);
