@@ -1,6 +1,7 @@
 import { createSlice, nanoid, PayloadAction as Act } from "@reduxjs/toolkit";
 import dayjs, { Dayjs, ManipulateType } from "dayjs";
 import duration from "dayjs/plugin/duration";
+import { initialState } from "../../app/initials";
 
 export type DayDelta = { value: number; unit: ManipulateType };
 type DayAddAct = Act<DayDelta>;
@@ -9,13 +10,6 @@ dayjs.extend(duration);
 
 const getDuration = (initialTime: Dayjs, finalTime: Dayjs) =>
   dayjs.duration(finalTime.diff(initialTime));
-
-const initialState = {
-  currentTime: dayjs(),
-  targetTime: dayjs().add(5, "minute"),
-  tMinus: dayjs.duration(5, "minutes"),
-  isCounting: false,
-};
 
 const slice = createSlice({
   name: "timer",
