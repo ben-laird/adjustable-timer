@@ -10,7 +10,7 @@ const Timer = (props: TimerProps) => {
   const dateCode = "DD MMM, YYYY - h:mm:ss";
   const duraCode = "HH:mm:ss";
 
-  const [drStrangeMode, setDrStrangeMode] = useState(false);
+  const [drStrangeMode, setDrStrangeMode] = useState(true);
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined);
 
   const timeStone = (delta: DayDelta) => {
