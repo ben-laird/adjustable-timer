@@ -13,9 +13,7 @@ const StartStop = (props: StartStopProps) => {
 };
 
 const mapState = (state: RootState) => {
-  const { isCounting } = state.timerSlice;
-  const output = { isCounting };
-  return output;
+  return { isCounting: state.timerSlice.isCounting };
 };
 
 const mapDispatch = { flipCounting };
