@@ -4,8 +4,9 @@ import { flipCounting } from "./timerSlice";
 
 type StartStopProps = ReturnType<typeof mapState> & typeof mapDispatch;
 
-const StartStop = (props: StartStopProps) => {
-  return <button onClick={props.flipCounting}>Start/Stop Timer</button>;
+const StartStop = () => {
+  const memes = () => console.log("memes");
+  return <button onClick={memes}>Start/Stop Timer</button>;
 };
 
 const mapState = (state: RootState) => {};
