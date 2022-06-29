@@ -19,15 +19,8 @@ const Timer = (props: TimerProps) => {
       return;
     }
     props.advanceTimeBy(delta);
-
-    const { value, unit } = delta;
-    const deltaMilis = dayjs.duration(value, unit).asMilliseconds();
-
-    setTimerId(
-      setTimeout(() => {
-        timeStone(delta);
-      }, deltaMilis)
-    );
+    const delay = dayjs.duration(delta.value, delta.unit).asMilliseconds();
+    setTimerId(setTimeout(() => timeStone(delta), delay));
   };
 
   useEffect(() => timeStone({ value: 1, unit: "second" }), [drStrangeMode]);
