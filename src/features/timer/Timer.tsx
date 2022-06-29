@@ -11,32 +11,23 @@ const Timer = (props: TimerProps) => {
 
   const [drStrangeMode, setDrStrangeMode] = useState(true);
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined);
-  const handleDrStrange = () => {
-    setDrStrangeMode(!drStrangeMode);
-  };
-
-  useEffect(() => {
-    timeStone();
-  }, [drStrangeMode]);
 
   const timeStone = () => {
     if (drStrangeMode) {
       clearTimeout(timerId);
       return;
     }
-
-    props.advanceTimeBy({value: 2, unit: "seconds"});
-
-    setTimerId(setTimeout(() => {
-      timeStone();
-    }, 2000));
+    props.advanceTimeBy({ value: 2, unit: "seconds" });
+    setTimerId(setTimeout(timeStone, 2000));
   };
+
+  useEffect(timeStone, [drStrangeMode]);
 
   return (
     <div>
       <h3>{props.tMinus.format(duraCode)}</h3>
       <p>Counting to {props.targetTime.format(dateCode)}</p>
-      <button onClick={handleDrStrange}>
+      <button onClick={() => setDrStrangeMode(!drStrangeMode)}>
         Turn {`${drStrangeMode ? "off" : "on"}`} Dr. Strange Mode
       </button>
     </div>
