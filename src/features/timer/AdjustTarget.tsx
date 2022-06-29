@@ -1,16 +1,21 @@
 import { connect, ConnectedProps } from "react-redux";
+import { RootState } from "../../app/store";
 import { adjustTarget, DayDelta } from "./timerSlice";
 
-type AdjustTargetProps = ConnectedProps<typeof connectUp>
+export type AdjustTargetBaseProps = { delta: DayDelta; text: string };
+type AdjustTargetProps = ConnectedProps<typeof connectUp>;
 
 const AdjustTarget = (props: AdjustTargetProps) => {
-  const adjTarget = (delta: DayDelta) => () => {props.adjustTarget(delta)};
+  const adjTarget = (delta: DayDelta) => () => {
+    props.adjustTarget(delta);
+  };
 
-  return (
-    <button onClick={adjTarget({value: 1, unit: "minute"})}>Add one minute</button>
-  );
+  return <button onClick={adjTarget(props.delta)}>{props.text}</button>;
 };
 
-const connectUp = connect(null, { adjustTarget });
+const connectUp = connect(
+  (_state: RootState, ownProps: AdjustTargetBaseProps) => ownProps,
+  { adjustTarget }
+);
 
 export default connectUp(AdjustTarget);
