@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../app/store";
 import { adjustTarget, DayDelta } from "./timerSlice";
@@ -10,7 +11,11 @@ const AdjustTarget = (props: AdjustTargetProps) => {
     props.adjustTarget(delta);
   };
 
-  return <button onClick={adjTarget(props.delta)}>{props.text}</button>;
+  return (
+    <Button onClick={adjTarget(props.delta)} variant="outlined">
+      {props.text}
+    </Button>
+  );
 };
 
 const connectUp = connect(
