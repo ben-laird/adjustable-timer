@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Typography } from "@mui/material";
+import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -28,16 +28,20 @@ const Timer = (props: TimerProps) => {
   useEffect(() => tickBy({ value: 1, unit: "second" }), [props.drStrangeMode]);
 
   return (
-    <Card variant="outlined">
-      <CardContent>
-        <Typography variant="h1">
-          {props.tMinus.format(props.durationCode)}
-        </Typography>
-        <Typography variant="body1">
-          Counting to {props.targetTime.format(props.dateCode)}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Grid container={true} justifyContent="center" margin={2}>
+      <Card variant="outlined">
+        <CardContent>
+          <Typography variant="h1">
+            {props.tMinus.format(props.durationCode)}
+          </Typography>
+          <Grid container={true} justifyContent="flex" margin={2}>
+            <Typography variant="body1">
+              Counting to {props.targetTime.format(props.dateCode)}
+            </Typography>
+          </Grid>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 };
 

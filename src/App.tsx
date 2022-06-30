@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { AdjustTargetBaseProps } from "./features/timer/AdjustTarget";
 import DrStrangeModeTimer from "./features/timer/DrStrangeModeTimer";
 import StartStop from "./features/timer/StartStop";
@@ -16,8 +16,12 @@ const adjusters: Array<AdjustTargetBaseProps> = [
 const App = () => {
   return (
     <div>
-      <Typography variant="h2">Time Stream</Typography>
-      <Typography variant="h3">Timer for streamers</Typography>
+      <Grid container={true} justifyContent="center" margin={2}>
+        <Typography variant="h2">Time Stream</Typography>
+      </Grid>
+      <Grid container={true} justifyContent="center" margin={2}>
+        <Typography variant="h3">Timer for Streamers</Typography>
+      </Grid>
       <DrStrangeModeTimer
         dateCode="h:mm:ss a on MMMM DD, YYYY"
         durationCode="HH:mm:ss"
