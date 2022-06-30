@@ -1,4 +1,4 @@
-import { ListItemButton, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { nanoid } from "@reduxjs/toolkit";
 import AdjustTarget, { AdjustTargetBaseProps } from "./AdjustTarget";
 
@@ -6,9 +6,7 @@ type TargetAdjustersProps = { adjusters: Array<AdjustTargetBaseProps> };
 
 const TargetAdjusters = (props: TargetAdjustersProps) => {
   const set = props.adjusters.map(({ delta, text }) => (
-    <ListItemButton key={nanoid()}>
-      <AdjustTarget delta={delta} text={text} />
-    </ListItemButton>
+    <AdjustTarget key={nanoid()} delta={delta} text={text} />
   ));
   return (
     <Stack
