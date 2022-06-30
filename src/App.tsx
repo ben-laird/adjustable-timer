@@ -18,7 +18,10 @@ const App = () => {
     <div>
       <Typography variant="h2">Time Stream</Typography>
       <Typography variant="h3">Timer for streamers</Typography>
-      <DrStrangeModeTimer dateCode="DD MMM, YYYY - h:mm:ss" durationCode="HH:mm:ss" />
+      <DrStrangeModeTimer
+        dateCode="h:mm:ss a on MMMM DD, YYYY"
+        durationCode="HH:mm:ss"
+      />
       <StartStop />
       <TargetAdjusters adjusters={adjusters} />
     </div>
