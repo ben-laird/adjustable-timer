@@ -1,3 +1,5 @@
+import { Alert, Button, Snackbar } from "@mui/material";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { RootState } from "../../app/store";
 import { flipCounting } from "./timerSlice";
@@ -5,10 +7,32 @@ import { flipCounting } from "./timerSlice";
 type StartStopProps = ReturnType<typeof mapState> & typeof mapDispatch;
 
 const StartStop = (props: StartStopProps) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    props.flipCounting();
+    setOpen(true);
+  };
+
+  const handleClose = (
+    _event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") return;
+    setOpen(false);
+  };
+
   return (
-    <button onClick={props.flipCounting}>
-      {`${props.isCounting ? "Stop" : "Start"}`} Timer
-    </button>
+    <div>
+      <Button variant="contained" onClick={handleClick}>
+        {`${props.isCounting ? "Stop" : "Start"}`} Timer
+      </Button>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          The timer has {`${props.isCounting ? "started!" : "stopped!"}`}
+        </Alert>
+      </Snackbar>
+    </div>
   );
 };
 
