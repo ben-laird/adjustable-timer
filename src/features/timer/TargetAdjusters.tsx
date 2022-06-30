@@ -1,12 +1,19 @@
+import { ListItemButton, Stack } from "@mui/material";
 import AdjustTarget, { AdjustTargetBaseProps } from "./AdjustTarget";
 
 type TargetAdjustersProps = { adjusters: Array<AdjustTargetBaseProps> };
 
 const TargetAdjusters = (props: TargetAdjustersProps) => {
   const set = props.adjusters.map(({ delta, text }) => (
-    <AdjustTarget delta={delta} text={text} />
+    <ListItemButton>
+      <AdjustTarget delta={delta} text={text} />
+    </ListItemButton>
   ));
-  return <div>{set}</div>;
+  return (
+    <Stack direction="row" spacing={1}>
+      {set}
+    </Stack>
+  );
 };
 
 export default TargetAdjusters;
