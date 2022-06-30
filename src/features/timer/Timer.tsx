@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Card, CardContent, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -28,8 +28,16 @@ const Timer = (props: TimerProps) => {
 
   return (
     <div>
-      <h3>{props.tMinus.format(duraCode)}</h3>
-      <p>Counting to {props.targetTime.format(dateCode)}</p>
+      <Card variant="outlined">
+        <CardContent>
+          <Typography sx={{ alignSelf: "center" }} variant="h1">
+            {props.tMinus.format(duraCode)}
+          </Typography>
+          <Typography variant="body1">
+            Counting to {props.targetTime.format(dateCode)}
+          </Typography>
+        </CardContent>
+      </Card>
       <Button
         variant="text"
         size="small"
