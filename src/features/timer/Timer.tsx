@@ -5,12 +5,10 @@ import { connect } from "react-redux";
 import { RootState } from "../../app/store";
 import { advanceTimeBy, DayDelta } from "./timerSlice";
 
+type TimerBaseProps = { durationCode: string; dateCode: string };
 type TimerProps = ReturnType<typeof mapState> & typeof mapDispatch;
 
 const Timer = (props: TimerProps) => {
-  const dateCode = "DD MMM, YYYY - h:mm:ss";
-  const duraCode = "HH:mm:ss";
-
   const [drStrangeMode, setDrStrangeMode] = useState(true);
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined);
 
@@ -30,11 +28,11 @@ const Timer = (props: TimerProps) => {
     <div>
       <Card variant="outlined">
         <CardContent>
-          <Typography sx={{ alignSelf: "center" }} variant="h1">
-            {props.tMinus.format(duraCode)}
+          <Typography variant="h1">
+            {props.tMinus.format(props.durationCode)}
           </Typography>
           <Typography variant="body1">
-            Counting to {props.targetTime.format(dateCode)}
+            Counting to {props.targetTime.format(props.dateCode)}
           </Typography>
         </CardContent>
       </Card>
@@ -49,9 +47,12 @@ const Timer = (props: TimerProps) => {
   );
 };
 
-const mapState = (state: RootState) => {
+const mapState = (
+  state: RootState,
+  { durationCode, dateCode }: TimerBaseProps
+) => {
   const { tMinus, targetTime } = state.timerSlice;
-  return { tMinus, targetTime };
+  return { tMinus, targetTime, durationCode, dateCode };
 };
 
 const mapDispatch = { advanceTimeBy };
