@@ -27,11 +27,12 @@ const slice = createSlice({
 
       state.currentTime = currentTime.add(value, unit);
       if (!isCounting) state.targetTime = targetTime.add(value, unit);
-      state.tMinus = getDuration(state.currentTime, state.targetTime);
+      state.tMinus = getDuration(currentTime, targetTime);
     },
     setTarget: {
       reducer: (state, action: Act<Dayjs>) => {
         state.targetTime = action.payload;
+        state.tMinus = getDuration(state.currentTime, state.targetTime)
       },
       prepare: (_state, action: Act<Dayjs>) => {
         return { meta: { id: nanoid() }, payload: action.payload };
@@ -39,8 +40,10 @@ const slice = createSlice({
     },
     adjustTarget: (state, action: DayAddAct) => {
       const { value, unit } = action.payload;
+      const { currentTime } = state;
+
       state.targetTime = state.targetTime.add(value, unit);
-      state.tMinus = dayjs.duration(state.currentTime.diff(state.targetTime));
+      state.tMinus = getDuration(currentTime, state.targetTime);
     },
     setCounting: (state, action: Act<boolean>) => {
       state.isCounting = action.payload;
