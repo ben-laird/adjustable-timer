@@ -1,5 +1,4 @@
 import { AdjustTargetBaseProps } from "./features/timer/AdjustTarget";
-import AdjustTime from "./features/timer/AdjustTime";
 import StartStop from "./features/timer/StartStop";
 import TargetAdjusters from "./features/timer/TargetAdjusters";
 import Timer from "./features/timer/Timer";
@@ -20,7 +19,6 @@ const App = () => {
       <Timer />
       <StartStop />
       <TargetAdjusters adjusters={adjusters} />
-      <AdjustTime />
     </div>
   );
 };
