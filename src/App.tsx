@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { AdjustTargetBaseProps } from "./features/timer/AdjustTarget";
+import DrStrangeModeTimer from "./features/timer/DrStrangeModeTimer";
 import StartStop from "./features/timer/StartStop";
 import TargetAdjusters from "./features/timer/TargetAdjusters";
 import Timer from "./features/timer/Timer";
@@ -17,7 +18,7 @@ const App = () => {
     <div>
       <Typography variant="h2">Time Stream</Typography>
       <Typography variant="h3">Timer for streamers</Typography>
-      <Timer dateCode="DD MMM, YYYY - h:mm:ss" durationCode = "HH:mm:ss" />
+      <DrStrangeModeTimer dateCode="DD MMM, YYYY - h:mm:ss" durationCode="HH:mm:ss" />
       <StartStop />
       <TargetAdjusters adjusters={adjusters} />
     </div>
