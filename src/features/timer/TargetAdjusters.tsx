@@ -10,7 +10,12 @@ const TargetAdjusters = (props: TargetAdjustersProps) => {
     </ListItemButton>
   ));
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack
+      direction="row"
+      spacing={1}
+      justifyContent="center"
+      alignItems="flex-start"
+    >
       {set}
     </Stack>
   );
