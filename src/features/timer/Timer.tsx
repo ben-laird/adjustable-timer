@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -29,9 +30,13 @@ const Timer = (props: TimerProps) => {
     <div>
       <h3>{props.tMinus.format(duraCode)}</h3>
       <p>Counting to {props.targetTime.format(dateCode)}</p>
-      <button onClick={() => setDrStrangeMode(!drStrangeMode)}>
+      <Button
+        variant="text"
+        size="small"
+        onClick={() => setDrStrangeMode(!drStrangeMode)}
+      >
         Turn {`${drStrangeMode ? "off" : "on"}`} Dr. Strange Mode
-      </button>
+      </Button>
     </div>
   );
 };
