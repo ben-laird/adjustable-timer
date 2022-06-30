@@ -1,5 +1,5 @@
 import { Alert, Button, Snackbar } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { RootState } from "../../app/store";
 import { flipCounting } from "./timerSlice";
@@ -23,8 +23,8 @@ const StartStop = (props: StartStopProps) => {
   };
 
   return (
-    <div>
-      <Button variant="contained" onClick={handleClick}>
+    <React.Fragment>
+      <Button variant="contained" size="large" onClick={handleClick}>
         {`${props.isCounting ? "Stop" : "Start"}`} Timer
       </Button>
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
@@ -32,7 +32,7 @@ const StartStop = (props: StartStopProps) => {
           The timer has {`${props.isCounting ? "started!" : "stopped!"}`}
         </Alert>
       </Snackbar>
-    </div>
+    </React.Fragment>
   );
 };
 
