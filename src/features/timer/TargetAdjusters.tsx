@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { ButtonGroup, Stack } from "@mui/material";
 import { nanoid } from "@reduxjs/toolkit";
 import AdjustTarget, { AdjustTargetBaseProps } from "./AdjustTarget";
 
@@ -9,14 +9,16 @@ const TargetAdjusters = (props: TargetAdjustersProps) => {
     <AdjustTarget key={nanoid()} delta={delta} text={text} />
   ));
   return (
-    <Stack
-      direction="row"
-      spacing={1}
-      justifyContent="center"
-      alignItems="flex-start"
+    <ButtonGroup
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        margin: 2,
+      }}
     >
       {set}
-    </Stack>
+    </ButtonGroup>
   );
 };
 
