@@ -12,12 +12,12 @@ const DrStrangeModeTimer: FC<DrStrangeModeTimerProps> = (props) => {
   const [drStrangeMode, setDrStrangeMode] = useState(true);
   return (
     <Timer {...props} drStrangeMode={drStrangeMode}>
-      <Box display="flex" justifyContent="flex-end" alignItems="flex-end">
+      <Box display="flex" justifyContent="center" alignItems="center">
         <Button
-          variant="text"
+          variant="outlined"
           size="small"
           color={`${drStrangeMode ? "success" : "primary"}`}
-          sx={{margin: 2, padding: 0}}
+          sx={{ margin: 2, padding: 0, width: 0 }}
           onClick={() => setDrStrangeMode(!drStrangeMode)}
         >
           Turn {`${drStrangeMode ? "off" : "on"}`} Dr. Strange Mode

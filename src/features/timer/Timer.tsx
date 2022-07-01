@@ -29,7 +29,7 @@ const Timer: FC<ConnectedProps<typeof connector>> = (props) => {
 
   return (
     <Grid container={true} justifyContent="center" margin={2}>
-      <Card variant="elevation" elevation={4}>
+      <Card variant="elevation" elevation={4} sx={{paddingLeft: 8, paddingRight: 8}}>
         <CardContent>
           <Typography variant="h1" sx={{ textAlign: "center" }}>
             {props.tMinus.format(props.durationCode)}
@@ -37,7 +37,7 @@ const Timer: FC<ConnectedProps<typeof connector>> = (props) => {
           <Typography variant="body1" sx={{ textAlign: "center" }}>
             Counting to {props.targetTime.format(props.dateCode)}
           </Typography>
-          <Box display="flex" justifyContent="flex-end" alignItems="flex-end">
+          <Box display="flex" justifyContent="center" alignItems="center">
             {props.children}
           </Box>
         </CardContent>
