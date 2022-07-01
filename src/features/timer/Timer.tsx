@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { FC, ReactNode, useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -29,15 +29,17 @@ const Timer: FC<ConnectedProps<typeof connector>> = (props) => {
 
   return (
     <Grid container={true} justifyContent="center" margin={2}>
-      <Card variant="outlined">
+      <Card variant="elevation" elevation={4}>
         <CardContent>
-          <Typography variant="h1">
+          <Typography variant="h1" sx={{ textAlign: "center" }}>
             {props.tMinus.format(props.durationCode)}
           </Typography>
-            <Typography variant="body1" sx={{textAlign: "center"}}>
-              Counting to {props.targetTime.format(props.dateCode)}
-            </Typography>
-          {props.children}
+          <Typography variant="body1" sx={{ textAlign: "center" }}>
+            Counting to {props.targetTime.format(props.dateCode)}
+          </Typography>
+          <Box display="flex" justifyContent="flex-end" alignItems="flex-end">
+            {props.children}
+          </Box>
         </CardContent>
       </Card>
     </Grid>
