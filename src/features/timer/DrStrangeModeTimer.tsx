@@ -4,18 +4,11 @@ import Timer from "./Timer";
 
 type DrStrangeModeTimerProps = { dateCode: string; durationCode: string };
 
-const DrStrangeModeTimer: FC<DrStrangeModeTimerProps> = ({
-  dateCode,
-  durationCode,
-}) => {
+const DrStrangeModeTimer: FC<DrStrangeModeTimerProps> = (props) => {
   const [drStrangeMode, setDrStrangeMode] = useState(true);
   return (
     <div>
-      <Timer
-        dateCode={dateCode}
-        durationCode={durationCode}
-        drStrangeMode={drStrangeMode}
-      />
+      <Timer {...props} drStrangeMode={drStrangeMode} />
       <Button
         variant="text"
         size="small"
