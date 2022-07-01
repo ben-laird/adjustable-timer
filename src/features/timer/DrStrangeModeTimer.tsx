@@ -17,7 +17,7 @@ const DrStrangeModeTimer: FC<DrStrangeModeTimerProps> = (props) => {
           variant="outlined"
           size="small"
           color={`${drStrangeMode ? "success" : "primary"}`}
-          sx={{ margin: 2, padding: 0, width: 0 }}
+          sx={{ margin: 2 }}
           onClick={() => setDrStrangeMode(!drStrangeMode)}
         >
           Turn {`${drStrangeMode ? "off" : "on"}`} Dr. Strange Mode

@@ -20,7 +20,7 @@ const StartStop: FC<ConnectedProps<typeof connector>> = (props) => {
 
   return (
     <Fragment>
-      <Grid container={true} justifyContent="center" margin={2}>
+      <Grid container={false} justifyContent="center" margin={2}>
         <Button
           variant="contained"
           size="large"
