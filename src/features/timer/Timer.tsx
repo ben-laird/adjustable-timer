@@ -1,6 +1,6 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import { FC, useEffect, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../app/store";
 import { advanceTimeBy, DayDelta } from "./timerSlice";
@@ -9,6 +9,7 @@ type TimerProps = {
   durationCode: string;
   dateCode: string;
   drStrangeMode?: boolean;
+  children?: ReactNode;
 };
 
 const Timer: FC<ConnectedProps<typeof connector>> = (props) => {
@@ -33,11 +34,10 @@ const Timer: FC<ConnectedProps<typeof connector>> = (props) => {
           <Typography variant="h1">
             {props.tMinus.format(props.durationCode)}
           </Typography>
-          <Grid container={true} justifyContent="flex" margin={2}>
-            <Typography variant="body1">
+            <Typography variant="body1" sx={{textAlign: "center"}}>
               Counting to {props.targetTime.format(props.dateCode)}
             </Typography>
-          </Grid>
+          {props.children}
         </CardContent>
       </Card>
     </Grid>
@@ -51,7 +51,7 @@ const connector = connect(
       typeof ownProps.drStrangeMode !== undefined
         ? ownProps.drStrangeMode
         : false;
-    const { dateCode, durationCode } = ownProps;
+    const { dateCode, durationCode, children } = ownProps;
 
     return {
       tMinus,
@@ -59,6 +59,7 @@ const connector = connect(
       durationCode,
       dateCode,
       drStrangeMode,
+      children,
     };
   },
   { advanceTimeBy }

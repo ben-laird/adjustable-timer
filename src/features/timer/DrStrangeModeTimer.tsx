@@ -7,8 +7,7 @@ type DrStrangeModeTimerProps = { dateCode: string; durationCode: string };
 const DrStrangeModeTimer: FC<DrStrangeModeTimerProps> = (props) => {
   const [drStrangeMode, setDrStrangeMode] = useState(true);
   return (
-    <div>
-      <Timer {...props} drStrangeMode={drStrangeMode} />
+    <Timer {...props} drStrangeMode={drStrangeMode}>
       <Button
         variant="text"
         size="small"
@@ -16,7 +15,7 @@ const DrStrangeModeTimer: FC<DrStrangeModeTimerProps> = (props) => {
       >
         Turn {`${drStrangeMode ? "off" : "on"}`} Dr. Strange Mode
       </Button>
-    </div>
+    </Timer>
   );
 };
 
