@@ -1,18 +1,17 @@
-import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { FC, useEffect, useState } from "react";
+import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../app/store";
 import { advanceTimeBy, DayDelta } from "./timerSlice";
 
-type TimerBaseProps = {
+type TimerProps = {
   durationCode: string;
   dateCode: string;
   drStrangeMode?: boolean;
 };
-type TimerProps = ReturnType<typeof mapState> & typeof mapDispatch;
 
-const Timer = (props: TimerProps) => {
+const Timer: FC<ConnectedProps<typeof connector>> = (props) => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined);
 
   const tickBy = (delta: DayDelta) => {
@@ -45,16 +44,24 @@ const Timer = (props: TimerProps) => {
   );
 };
 
-const mapState = (
-  state: RootState,
-  { durationCode, dateCode, drStrangeMode }: TimerBaseProps
-) => {
-  const { tMinus, targetTime } = state.timerSlice;
-  drStrangeMode = typeof drStrangeMode !== undefined ? drStrangeMode : false;
+const connector = connect(
+  (state: RootState, ownProps: TimerProps) => {
+    const { tMinus, targetTime } = state.timerSlice;
+    const drStrangeMode =
+      typeof ownProps.drStrangeMode !== undefined
+        ? ownProps.drStrangeMode
+        : false;
+    const { dateCode, durationCode } = ownProps;
 
-  return { tMinus, targetTime, durationCode, dateCode, drStrangeMode };
-};
+    return {
+      tMinus,
+      targetTime,
+      durationCode,
+      dateCode,
+      drStrangeMode,
+    };
+  },
+  { advanceTimeBy }
+);
 
-const mapDispatch = { advanceTimeBy };
-
-export default connect(mapState, mapDispatch)(Timer);
+export default connector(Timer);
