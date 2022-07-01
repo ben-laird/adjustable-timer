@@ -50,7 +50,7 @@ const connector = connect(
   (state: RootState, ownProps: TimerProps) => {
     const { tMinus, targetTime } = state.timerSlice;
     const drStrangeMode =
-      typeof ownProps.drStrangeMode !== undefined
+      typeof ownProps.drStrangeMode !== "undefined"
         ? ownProps.drStrangeMode
         : false;
     const { dateCode, durationCode, children } = ownProps;
