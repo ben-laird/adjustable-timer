@@ -1,12 +1,12 @@
 import { Button } from "@mui/material";
+import { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../app/store";
 import { adjustTarget, DayDelta } from "./timerSlice";
 
-export type AdjustTargetBaseProps = { delta: DayDelta; text: string };
-type AdjustTargetProps = ConnectedProps<typeof connectUp>;
+export type AdjustTargetProps = { delta: DayDelta; text: string };
 
-const AdjustTarget = (props: AdjustTargetProps) => {
+const AdjustTarget: FC<ConnectedProps<typeof connector>> = (props) => {
   const adjTarget = (delta: DayDelta) => () => {
     props.adjustTarget(delta);
   };
@@ -18,9 +18,9 @@ const AdjustTarget = (props: AdjustTargetProps) => {
   );
 };
 
-const connectUp = connect(
-  (_state: RootState, ownProps: AdjustTargetBaseProps) => ownProps,
+const connector = connect(
+  (_state: RootState, ownProps: AdjustTargetProps) => ownProps,
   { adjustTarget }
 );
 
-export default connectUp(AdjustTarget);
+export default connector(AdjustTarget);
