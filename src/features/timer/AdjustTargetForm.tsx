@@ -1,11 +1,10 @@
+import { FC } from "react";
 import { Field, Form } from "react-final-form";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../app/store";
 import { adjustTarget, DayDelta } from "./timerSlice";
 
-type AdjustTimeProps = ReturnType<typeof mapState> & typeof mapDispatch;
-
-const AdjustTime = (props: AdjustTimeProps) => {
+const AdjustTargetForm: FC<ConnectedProps<typeof connector>> = (props) => {
   const onSubmit = (vals: FormData) => {
     const payload: DayDelta = { value: 1, unit: "minute" };
     props.adjustTarget(payload);
@@ -28,10 +27,11 @@ const AdjustTime = (props: AdjustTimeProps) => {
   );
 };
 
-const mapState = (state: RootState) => {
-  return { state };
-};
+const connector = connect(
+  (state: RootState) => {
+    return { state };
+  },
+  { adjustTarget }
+);
 
-const mapDispatch = { adjustTarget };
-
-export default connect(mapState, mapDispatch)(AdjustTime);
+export default connector(AdjustTargetForm);
