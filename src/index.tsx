@@ -1,16 +1,23 @@
-import React from "react";
+import { ThemeProvider } from "@emotion/react";
+import { createTheme, CssBaseline } from "@mui/material";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { store } from "./app/store";
 import App from "./App";
+import { store } from "./app/store";
 import reportWebVitals from "./reportWebVitals";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
+const lightTheme = createTheme({ palette: { mode: "light" } }); 
+const darkTheme = createTheme({ palette: { mode: "dark" } });
+
 root.render(
   <Provider store={store}>
-    <App />
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
   </Provider>
 );
 
