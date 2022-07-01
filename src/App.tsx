@@ -25,8 +25,9 @@ const App = () => {
       <DrStrangeModeTimer
         dateCode="h:mm:ss a on MMMM DD, YYYY"
         durationCode="HH:mm:ss"
-      />
-      <StartStop />
+      >
+        <StartStop />
+      </DrStrangeModeTimer>
       <TargetAdjusters adjusters={adjusters} />
     </div>
   );
