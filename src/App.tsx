@@ -1,11 +1,11 @@
 import { Grid, Typography } from "@mui/material";
-import { AdjustTargetBaseProps } from "./features/timer/AdjustTarget";
+import { AdjustTargetProps } from "./features/timer/AdjustTarget";
 import DrStrangeModeTimer from "./features/timer/DrStrangeModeTimer";
 import StartStop from "./features/timer/StartStop";
 import TargetAdjusters from "./features/timer/TargetAdjusters";
 import Timer from "./features/timer/Timer";
 
-const adjusters: Array<AdjustTargetBaseProps> = [
+const adjusters: Array<AdjustTargetProps> = [
   { delta: { value: 1, unit: "minute" }, text: "Add one minute" },
   { delta: { value: 5, unit: "minutes" }, text: "Add five minutes" },
   { delta: { value: 10, unit: "minutes" }, text: "Add ten minutes" },
