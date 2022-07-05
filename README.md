@@ -15,7 +15,7 @@ This is a proof-of-concept single-page-app (SPA) made using [Create React App](h
 To use this app, clone the source code:
 
 ```bash
-git clone sss
+gh repo clone ben-laird/adjustable-timer
 ```
 
 In a terminal at the root directory, run `npm start`. This will open a browser at [localhost 3000](https://localhost:3000) where you can see and interact with the app. Using Firefox or Chrome with React DevTools and Redux DevTools is recommended.
