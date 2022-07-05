@@ -1,8 +1,8 @@
 import { Grid, Typography } from "@mui/material";
 import { AdjustTargetProps } from "./features/timer/AdjustTarget";
-import FreezableTimer from "./features/timer/FreezableTimer";
 import StartStop from "./features/timer/StartStop";
 import TargetAdjusters from "./features/timer/TargetAdjusters";
+import Timer from "./features/timer/Timer";
 
 const adjusters: Array<AdjustTargetProps> = [
   { delta: { value: 1, unit: "minute" }, text: "Add one minute" },
@@ -18,12 +18,12 @@ const App = () => {
       <Grid container={true} justifyContent="center" margin={2}>
         <Typography variant="h2">Time Stream</Typography>
       </Grid>
-      <FreezableTimer
+      <Timer
         dateCode="h:mm:ss a on MMMM DD, YYYY"
         durationCode="HH:mm:ss"
       >
         <StartStop />
-      </FreezableTimer>
+      </Timer>
       <TargetAdjusters adjusters={adjusters} />
     </div>
   );
