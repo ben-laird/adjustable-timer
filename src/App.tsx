@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { AdjustTargetProps } from "./features/timer/AdjustTarget";
-import DrStrangeModeTimer from "./features/timer/DrStrangeModeTimer";
+import FreezableTimer from "./features/timer/FreezableTimer";
 import StartStop from "./features/timer/StartStop";
 import TargetAdjusters from "./features/timer/TargetAdjusters";
 
@@ -21,12 +21,12 @@ const App = () => {
       <Grid container={true} justifyContent="center" margin={2}>
         <Typography variant="h3">Timer for Streamers</Typography>
       </Grid>
-      <DrStrangeModeTimer
+      <FreezableTimer
         dateCode="h:mm:ss a on MMMM DD, YYYY"
         durationCode="HH:mm:ss"
       >
         <StartStop />
-      </DrStrangeModeTimer>
+      </FreezableTimer>
       <TargetAdjusters adjusters={adjusters} />
     </div>
   );

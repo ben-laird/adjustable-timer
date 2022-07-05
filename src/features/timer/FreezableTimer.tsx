@@ -2,25 +2,25 @@ import { Box, Button } from "@mui/material";
 import { FC, ReactNode, useState } from "react";
 import Timer from "./Timer";
 
-type DrStrangeModeTimerProps = {
+type FreezableTimerProps = {
   dateCode: string;
   durationCode: string;
   children?: ReactNode;
 };
 
-const DrStrangeModeTimer: FC<DrStrangeModeTimerProps> = (props) => {
-  const [drStrangeMode, setDrStrangeMode] = useState(true);
+const FreezableTimer: FC<FreezableTimerProps> = (props) => {
+  const [freeze, setFreeze] = useState(true);
   return (
-    <Timer {...props} drStrangeMode={drStrangeMode}>
+    <Timer {...props} freeze={freeze}>
       <Box display="flex" justifyContent="center" alignItems="center">
         <Button
           variant="outlined"
           size="small"
-          color={`${drStrangeMode ? "success" : "primary"}`}
+          color={`${freeze ? "success" : "primary"}`}
           sx={{ margin: 2 }}
-          onClick={() => setDrStrangeMode(!drStrangeMode)}
+          onClick={() => setFreeze(!freeze)}
         >
-          Turn {`${drStrangeMode ? "off" : "on"}`} Dr. Strange Mode
+          Turn {`${freeze ? "off" : "on"}`} Freeze Mode
         </Button>
         {props.children}
       </Box>
@@ -28,4 +28,4 @@ const DrStrangeModeTimer: FC<DrStrangeModeTimerProps> = (props) => {
   );
 };
 
-export default DrStrangeModeTimer;
+export default FreezableTimer;

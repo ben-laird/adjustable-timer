@@ -8,7 +8,7 @@ import { advanceTimeBy, DayDelta } from "./timerSlice";
 type TimerProps = {
   durationCode: string;
   dateCode: string;
-  drStrangeMode?: boolean;
+  freeze?: boolean;
   children?: ReactNode;
 };
 
@@ -16,7 +16,7 @@ const Timer: FC<ConnectedProps<typeof connector>> = (props) => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined);
 
   const tickBy = (delta: DayDelta) => {
-    if (props.drStrangeMode) {
+    if (props.freeze) {
       clearTimeout(timerId);
       return;
     }
@@ -25,7 +25,7 @@ const Timer: FC<ConnectedProps<typeof connector>> = (props) => {
     setTimerId(setTimeout(() => tickBy(delta), delay));
   };
 
-  useEffect(() => tickBy({ value: 1, unit: "second" }), [props.drStrangeMode]);
+  useEffect(() => tickBy({ value: 1, unit: "second" }), [props.freeze]);
 
   return (
     <Grid container={true} justifyContent="center" margin={2}>
@@ -49,9 +49,9 @@ const Timer: FC<ConnectedProps<typeof connector>> = (props) => {
 const connector = connect(
   (state: RootState, ownProps: TimerProps) => {
     const { tMinus, targetTime } = state.timerSlice;
-    const drStrangeMode =
-      typeof ownProps.drStrangeMode !== "undefined"
-        ? ownProps.drStrangeMode
+    const freeze =
+      typeof ownProps.freeze !== "undefined"
+        ? ownProps.freeze
         : false;
     const { dateCode, durationCode, children } = ownProps;
 
@@ -60,7 +60,7 @@ const connector = connect(
       targetTime,
       durationCode,
       dateCode,
-      drStrangeMode,
+      freeze,
       children,
     };
   },
