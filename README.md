@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# Adjustable Timer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+## Description
 
-## Available Scripts
+This is a proof-of-concept single-page-app (SPA) made using [Create React App](https://github.com/facebook/create-react-app) and [Redux Toolkit](https://redux-toolkit.js.org/). The app tracks time by using global state to store the current and target time, as well as the duration between the two. Reducers responsible for advancing the time, adding time, and setting the target time are included and connected to various components via the [`connect()` function](https://react-redux.js.org/using-react-redux/connect-mapstate).
 
-In the project directory, you can run:
+### Libraries Used
 
-### `npm start`
+* [React](https://reactjs.org)
+* [Redux Toolkit](https://redux-toolkit.js.org)
+* [Material UI](https://mui.com)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation and Usage
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To use this app, clone the source code:
 
-### `npm test`
+```bash
+git clone sss
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In a terminal at the root directory, run `npm start`. This will open a browser at [localhost 3000](https://localhost:3000) where you can see and interact with the app. Using Firefox or Chrome with React DevTools and Redux DevTools is recommended.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+For more details, check out the [Create React App README](CRA-README.md) included in the source code.
