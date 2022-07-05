@@ -18,9 +18,6 @@ const App = () => {
       <Grid container={true} justifyContent="center" margin={2}>
         <Typography variant="h2">Time Stream</Typography>
       </Grid>
-      <Grid container={true} justifyContent="center" margin={2}>
-        <Typography variant="h3">Timer for Streamers</Typography>
-      </Grid>
       <FreezableTimer
         dateCode="h:mm:ss a on MMMM DD, YYYY"
         durationCode="HH:mm:ss"
